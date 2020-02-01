@@ -1,5 +1,6 @@
 # nmist_GAN
 Won Jun Lee
+
 [Art & Ai](https://www.vip.gatech.edu/teams/art-ai) team in Vertically Integrated Projects at Georgia Institute of Technology.   
 
 
