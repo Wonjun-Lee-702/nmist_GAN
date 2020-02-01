@@ -1,6 +1,6 @@
 # nmist_GAN
 Won Jun Lee
-Art & Ai team in Vertically Integrated Projects at Georgia Institute of Technology.   
+[Art & Ai](https://www.vip.gatech.edu/teams/art-ai) team in Vertically Integrated Projects at Georgia Institute of Technology.   
 
 
 This project is to understand how GAN works with nmist dataset.
