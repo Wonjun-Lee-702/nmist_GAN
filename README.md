@@ -5,7 +5,7 @@ Won Jun Lee
 
 This project is to understand how GAN works with nmist dataset.
 
-It is recommended to run in [Google Colab].(https://colab.research.google.com)
+It is recommended to run in [Google Colab](https://colab.research.google.com).
 
 ## discriminator.py
 
