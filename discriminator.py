@@ -69,7 +69,8 @@ def load_training_data():
 
 def generate_real_data(num_sample):
   index = np.random.choice(x_train.shape[0], num_sample, replace=False)
-  x = x_train[index]
+  x = load_training_data()
+  x = x[index]
   y = np.ones((num_sample,1))
   return x,y
 

@@ -38,12 +38,15 @@ def initialize_generator(latent_space=100):
 def generate_latent_space(latent_space,  num_sample):
   #generating random points in latent space
   #using standard normal distribution
-  x_input = np.random.rand(latent_space * num_sample).reshape(num_sample, latent_space)
+  x_input = np.random.randn(latent_space * num_sample).reshape(num_sample, latent_space)
   return x_input
 
 def generate_fake_samples(model, latent_space, num_sample):
   #generate fake samples for generator
   x = generate_latent_space(latent_space, num_sample)
+  #debug
+  print(x.shape)
+  #debug
   x = model.predict(x)
   y = np.zeros((num_sample, 1))
   return x,y
