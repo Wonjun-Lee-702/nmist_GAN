@@ -45,7 +45,7 @@ def train_full(d_model, g_model, gan_model, latent_space=100, iter=100, num_batc
     g_loss = gan_model.train_on_batch(x_gan, y_gan)
     if verbose:
       print("iter: %d, discriminator loss: %.3f, generator loss: %.3f"% (i+1, d_loss, g_loss))
-    if i % 100 == 9:
+    if i % 100 == 0:
       summarize_performance(i, g_model, d_model, latent_space)
 
 def summarize_performance(iter, g_model, d_model, latent_dim, n_sample=100):
@@ -55,7 +55,7 @@ def summarize_performance(iter, g_model, d_model, latent_dim, n_sample=100):
   _, acc_fake = d_model.evaluate(x_fake, y_fake, verbose=0)
   print('Accuracy real: %.0f%%, fake: %.0f%%' % (acc_real*100, acc_fake*100))
   save_plot(x_fake, iter)
-  filename = 'generator_model_%03d.h5' % (iter + 1)
+  filename = 'generator_model_%03d.h5' % (iter)
   g_model.save(filename)
 
 def save_plot(examples, iter, n=10):
@@ -63,7 +63,7 @@ def save_plot(examples, iter, n=10):
     pyplot.subplot(n,n,1+i)
     pyplot.axis('off')
     pyplot.imshow(examples[i,:,:,0], cmap='gray_r')
-  filename = "generated_plot_e%03d.png" % (iter+ 1 )
+  filename = "generated_plot_e%03d.png" % (iter)
   pyplot.savefig(filename)
   pyplot.close()
 

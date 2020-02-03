@@ -44,9 +44,6 @@ def generate_latent_space(latent_space,  num_sample):
 def generate_fake_samples(model, latent_space, num_sample):
   #generate fake samples for generator
   x = generate_latent_space(latent_space, num_sample)
-  #debug
-  #print(x.shape)
-  #debug
   x = model.predict(x)
   y = np.zeros((num_sample, 1))
   return x,y

@@ -64,7 +64,6 @@ def load_training_data():
 
   #normalize pixel values
   x = x / 255
-  #print(x.shape)
   return x
 
 def generate_real_data(num_sample):
