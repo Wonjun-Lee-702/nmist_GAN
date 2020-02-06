@@ -20,9 +20,12 @@ def initialize_discriminator(layer_shape=(28, 28, 1)):
   model.add(Conv2D(filters=64, kernel_size=(3,3), strides=1, padding='same', input_shape=layer_shape))
   model.add(LeakyReLU())
   model.add(Dropout(0.3))
+  model.add(Conv2D(filters=64, kernel_size=(3,3), strides=1, padding='same', input_shape=layer_shape))
+  model.add(LeakyReLU())
+  model.add(Dropout(0.3))
   model.add(Flatten())
   model.add(Dense(1, activation='sigmoid'))
-  opt = Adam(lr = 0.0001, beta_1=0.5)
+  opt = Adam(lr = 0.0002, beta_1=0.5)
   model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['accuracy'])
   return model
 
@@ -73,7 +76,7 @@ def summarize_performance(iter, g_model, d_model, latent_dim, num_sample):
   _, acc_real = d_model.evaluate(x_real, y_real, verbose=0)
   x_fake, y_fake = generate_fake_data(g_model, latent_dim, num_sample)
   _, acc_fake = d_model.evaluate(x_fake, y_fake, verbose=0)
-  print('Accuracy real: %.0f%%, fake: %.0f%%' % (acc_real*100, acc_fake*100))
+  print('iter: %d, Accuracy real: %.0f%%, fake: %.0f%%' % (iter, acc_real*100, acc_fake*100))
   save_plot(x_fake, iter)
   filename = 'generator_model_%d.h5' % (iter)
   g_model.save(filename)
@@ -87,7 +90,7 @@ def save_plot(examples, iter, n=5):
   pyplot.savefig(filename)
   pyplot.close()
 
-def train(d_model, g_model, gan_model, latent_dim=100, iter=10000, num_sample=1000, verbose=False):
+def train(d_model, g_model, gan_model, latent_dim=100, iter=5000, num_sample=1000, verbose=False):
   y_gan = np.ones((num_sample,1))
   for i in range(iter):
     #generate data for generator, discriminator, and GAN
